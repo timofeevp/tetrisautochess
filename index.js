@@ -42,7 +42,7 @@ class Figure {
 
   async move(direction){
     const timer = ms => new Promise(res => setTimeout(res, ms))
-    
+
     if (direction == "bottom") {
       let closestFigureCellToBottom = Math.max(...this.position.map(coords => coords[0]));
       let lastRowIndex = defaultFieldHeight - 1;
@@ -55,23 +55,24 @@ class Figure {
       }
     }
 
-    if (direction == "bottom") {
-      let closestFigureCellToBottom = Math.max(...this.position.map(coords => coords[0]));
-      let lastRowIndex = defaultFieldHeight - 1;
-      while (closestFigureCellToBottom < lastRowIndex){
+    if (direction == "top") {
+      let closestFigureCellToTop = Math.min(...this.position.map(coords => coords[0]));
+      console.log(closestFigureCellToTop)
+      let firstRowIndex = 0;
+      while (closestFigureCellToTop > firstRowIndex){
         await timer(defaultFigureSpeed);
         this.renderFigure("gray");
-        this.position = this.position.map(coords => [coords[0]+1, coords[1]])
-        closestFigureCellToBottom = Math.max(...this.position.map(coords => coords[0]));
+        this.position = this.position.map(coords => [coords[0]-1, coords[1]])
+        closestFigureCellToTop = Math.min(...this.position.map(coords => coords[0]));
         this.renderFigure();
       }
     }
   }
 }
 
-let newFigure = new Figure([[0,0],[1,0],[2,0],[3,0]], "red");
+let newFigure = new Figure([[9,9],[8,9],[7,9],[6,9]], "red");
 newFigure.renderFigure();
-newFigure.move("bottom");
+newFigure.move("top");
 
 let newFigure2 = new Figure([[0,3],[1,3],[1,4],[0,4]], "green");
 newFigure2.renderFigure();
