@@ -1,0 +1,19 @@
+.PlayerField{
+  display: table;
+  background-color: #DAD871;
+  height: 800px;
+  width: 800px;
+}
+
+.row{
+  display: table-row;
+  background-color: black;
+  margin: 10px;
+}
+
+.cell{
+  display: table-cell;
+  background-color: gray;
+  padding: 10px;
+  border: #000000 solid 1px;
+}
